@@ -1,0 +1,66 @@
+Задачи:
+    Решить какие нужны state, action и reducer. 
+Решение:
+1. State: error, loading, chars
+
+2. Action:
+    2.1 { type: 'SET_ERROR', payload: сюда передавать ошибку или null (очищать ошибку) }
+            Или можно заделить разделить логику. Ниже пример
+        { type: 'SET_ERROR' }
+        { type: 'CLEAR_ERROR' }
+
+    2.2 { type: 'SET_LOADING', payload: Сюда передавать true или false }
+            Или так же разделить логику
+        { type: 'START_LOADING' }
+        { type: 'STOP_LOADING' }
+    
+    2.3 { type: 'SET_CHARS', payload: Массив персонажей } Этот action для того когда мы с json получаем список персонажей
+        { type: 'ADD_CHAR', payload: newChar } + новый персонаж
+        { type: 'DELETE_CHAR', payload: Фильтруем массив }
+
+3. Reducer:
+const initialState = { 
+    error: null,
+    loading: false,
+    chars: []
+};
+
+const reducer = (state = initialState, action) => {
+    switch (action.type) {
+      case 'SET_ERROR':
+        return {
+          ...state, error: action.payLoad
+        };
+
+        Или разделить логику error 
+        
+      case 'SET_ERROR':
+        return {
+            ...state, error: action.payLoad
+        };
+      case 'CLEAR_ERROR':
+        return {
+            ...state, error: null
+        };
+
+      case 'SET_LOADING':
+        return {
+          ...state, loading: action.payLoad
+        };
+
+      case 'SET_CHARS':
+        return {
+          ...state, chars: action.payLoad
+        }
+      case 'ADD_CHAR':
+        return {
+          ...state, chars: [...state.chars, action.payLoad]
+        }
+      case 'DELETE_CHAR':
+        return {
+          ...state, chars: action.payLoad
+        }
+      default:
+        return state
+    }
+}

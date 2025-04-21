@@ -1,0 +1,55 @@
+{
+  "heroes": [
+    {
+      "id": "dc812ec6-5dbb-41af-9907-e50e92881a87",
+      "name": "Загадочный герой",
+      "description": "Скрываться",
+      "element": "wind"
+    },
+    {
+      "id": "e70a748a-6452-4ed4-8daf-308fc571c14b",
+      "name": "Земля",
+      "description": "Камень",
+      "element": "earth"
+    },
+    {
+      "id": "100d28ba-47ed-41b3-9cea-0cf04d23873b",
+      "name": "Бёрнис",
+      "description": "Аномалия",
+      "element": "fire"
+    },
+    {
+      "id": "229107c3-a481-479d-baa3-b76d1acb2551",
+      "name": "Фурина",
+      "description": "Водная царица",
+      "element": "water"
+    }
+  ],
+  "filters": [
+    {
+      "element": "all",
+      "rus": "Все",
+      "id": "803b"
+    },
+    {
+      "element": "fire",
+      "rus": "Огонь",
+      "id": "edc7"
+    },
+    {
+      "element": "water",
+      "rus": "Вода",
+      "id": "3218"
+    },
+    {
+      "element": "wind",
+      "rus": "Ветер",
+      "id": "9fb1"
+    },
+    {
+      "element": "earth",
+      "rus": "Земля",
+      "id": "9bdb"
+    }
+  ]
+}
