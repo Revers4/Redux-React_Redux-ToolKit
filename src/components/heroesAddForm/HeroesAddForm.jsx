@@ -17,7 +17,7 @@ const HeroesAddForm = () => {
     const [heroName, setHeroName] = useState('')
     const [heroDescription, setHeroDescription] = useState('')
     const [heroElement, setHeroElement] = useState('')
-    const { heroFilters, heroFiltersLoadingStatus } = useSelector(state => state);
+    const { heroFilters, heroFiltersLoadingStatus } = useSelector(state => state.filters);
     const { request } = useHttp();
     const dispatch = useDispatch()
 

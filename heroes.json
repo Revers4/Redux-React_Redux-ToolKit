@@ -23,6 +23,12 @@
       "name": "Фурина",
       "description": "Водная царица",
       "element": "water"
+    },
+    {
+      "id": "2dbc906a-6e55-4b68-b618-35d4802fffaa",
+      "name": "Фарузан",
+      "description": "Управлять ветром",
+      "element": "wind"
     }
   ],
   "filters": [

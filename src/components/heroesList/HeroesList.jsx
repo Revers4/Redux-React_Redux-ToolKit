@@ -2,9 +2,10 @@ import { useHttp } from '../../hooks/http.hook.js';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useCallback } from 'react';
-import { heroesFetching, heroesFetched, heroesFetchingError, heroesDelete } from '../../actions/actions';
+import { fetchHeroes, heroesDelete } from '../../actions/actions';
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
+import { createSelector } from 'reselect';
 
 // Задача для этого компонента:
 // При клике на "крестик" идет удаление персонажа из общего состояния
@@ -12,7 +13,18 @@ import Spinner from '../spinner/Spinner';
 // Удаление идет и с json файла при помощи метода DELETE
 
 const HeroesList = (props) => {
-    const filtreredHeroes = useSelector(state => state.filtreredHeroes)
+    const filteredHeroesSelector = createSelector(
+        (state) => state.filters.activeHeroesFilter,
+        (state) => state.heroes.heroes,
+        (filter, heroes) => {
+            if (filter === 'all') {
+                return heroes
+            } else {
+                return heroes.filter(item => item.element === filter)
+            }
+        }
+    )
+    const filtreredHeroes = useSelector(filteredHeroesSelector)
 
     const heroesLoadingStatus = useSelector(state => state.heroesLoadingStatus);
 
@@ -20,12 +32,7 @@ const HeroesList = (props) => {
     const { request } = useHttp();
 
     useEffect(() => {
-        dispatch(heroesFetching());
-        request("http://localhost:3001/heroes")
-            .then(data => dispatch(heroesFetched(data)))
-            .catch(() => dispatch(heroesFetchingError()))
-
-        // eslint-disable-next-line
+        dispatch(fetchHeroes(request))
     }, []);
 
     const deleteHeroe = useCallback((id) => {

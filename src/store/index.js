@@ -1,7 +1,18 @@
-import { createStore } from "redux";
-import { reducer } from "../reducer/reducer";
+import heroes from "../reducer/heroes";
+import filters from "../reducer/filtres";
+import { configureStore } from "@reduxjs/toolkit"
 
-export const store = createStore(
-    reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-)
+const stringMiddleWare = () => (next) => (action) => {
+    if(typeof action === 'string'){
+        return next({
+            type: action
+        })
+    }
+    return next(action)
+}
+
+export const store = configureStore({
+    reducer: {heroes,filters},
+    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(stringMiddleWare),
+    devTools: process.env.NODE_ENV!=="production",
+})
