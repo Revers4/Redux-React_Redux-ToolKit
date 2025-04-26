@@ -1,8 +1,5 @@
-import { useCallback } from "react"
-
 export const useHttp = () => {
-
-    const request = useCallback( async (
+    const request =  async (
         url, 
         method = "GET", 
         body = null,
@@ -18,7 +15,7 @@ export const useHttp = () => {
             } catch (error) {
                 throw error
             }
-    }, [])
+    }
 
     return { request }
 }
